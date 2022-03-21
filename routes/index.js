@@ -53,8 +53,16 @@ router.get('/whitelistcollection', async function(req, res, next) {
 
 router.post('/whitelistcollection/add', async function(req, res, next) {
  const  collections = await CollectionsContainer();
+ let whitelistaddresse = "";
    const whitelistcollection = collections.whitelist;
-    const whitelistaddresse = await whitelistcollection.insertOne({"address":req.body.address});
+
+   const a = await whitelistcollection.findOne({"address":req.body.address});
+   if(a){
+     whitelistaddresse = ""
+   }else{
+     whitelistaddresse = await whitelistcollection.insertOne({"address":req.body.address});
+   }
+
   res.json({"whitelistaddresse":whitelistaddresse});
 });
 
