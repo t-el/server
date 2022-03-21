@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const CollectionsContainer = require('../mongodbServer.js');
-
+var cors = require('cors');
+router.use(cors());
 /* GET home page. */
 router.get('/giftcollection', async function(req, res, next) {
 
