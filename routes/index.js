@@ -30,7 +30,13 @@ router.get('/whitelistcollectioncount', async function(req, res, next) {
 router.post('/giftcollection/add', async function(req, res, next) {
  const  collections = await CollectionsContainer();
    const giftcollection = collections.giftlist;
-   const giftaddresse = await giftcollection.insertOne({"address":req.body.address});
+   const a = await giftcollection.findOne({"address":req.body.address});
+   if(a){
+     
+   }else{
+    const giftaddresse = await giftcollection.insertOne({"address":req.body.address});
+   }
+
    res.json({"giftaddresse":giftaddresse});
 });
 
