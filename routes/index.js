@@ -30,15 +30,14 @@ router.get('/whitelistcollectioncount', async function(req, res, next) {
 
 router.post('/giftcollection/add', async function(req, res, next) {
  const  collections = await CollectionsContainer();
- let giftaddresse = "";
+ let giftaddresse = {};
    const giftcollection = collections.giftlist;
    const a = await giftcollection.findOne({"address":req.body.address});
    if(a){
-     giftaddresse = ""
+     giftaddresse = {"ae":true};
    }else{
      giftaddresse = await giftcollection.insertOne({"address":req.body.address});
    }
-
    res.json({"giftaddresse":giftaddresse});
 });
 
@@ -54,12 +53,12 @@ router.get('/whitelistcollection', async function(req, res, next) {
 
 router.post('/whitelistcollection/add', async function(req, res, next) {
  const  collections = await CollectionsContainer();
- let whitelistaddresse = "";
+ let whitelistaddresse = {};
    const whitelistcollection = collections.whitelist;
 
    const a = await whitelistcollection.findOne({"address":req.body.address});
    if(a){
-     whitelistaddresse = ""
+     whitelistaddresse =  {"ae":true};
    }else{
      whitelistaddresse = await whitelistcollection.insertOne({"address":req.body.address});
    }
